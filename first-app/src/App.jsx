@@ -1,3 +1,4 @@
+/*
 import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
@@ -33,3 +34,29 @@ function App() {
 }
 
 export default App
+*/
+
+import React from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { PersonProvider } from './context/PersonContext';
+import Header from './components/Header';
+import Home from './pages/Home';
+import Details from './pages/Details'; // Importiere die Details-Seite
+import AddEditPersonForm from './components/AddEditPersonForm';
+
+const App = () => {
+  return (
+    <PersonProvider>
+      <Router>
+        <Header />
+        <Switch>
+          <Route path="/" exact component={Home} />
+          <Route path="/details/:id" component={Details} /> {/* Route zur Details-Seite */}
+          <Route path="/add" component={() => <AddEditPersonForm />} />
+        </Switch>
+      </Router>
+    </PersonProvider>
+  );
+};
+
+export default App;
