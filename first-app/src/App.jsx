@@ -37,11 +37,11 @@ export default App
 */
 
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { PersonProvider } from './context/PersonContext';
 import Header from './components/Header';
 import Home from './pages/Home';
-import Details from './pages/Details'; // Importiere die Details-Seite
+import Details from './pages/Details';
 import AddEditPersonForm from './components/AddEditPersonForm';
 
 const App = () => {
@@ -49,11 +49,11 @@ const App = () => {
     <PersonProvider>
       <Router>
         <Header />
-        <Switch>
-          <Route path="/" exact component={Home} />
-          <Route path="/details/:id" component={Details} /> {/* Route zur Details-Seite */}
-          <Route path="/add" component={() => <AddEditPersonForm />} />
-        </Switch>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/details/:id" element={<Details />} />
+          <Route path="/add" element={<AddEditPersonForm />} />
+        </Routes>
       </Router>
     </PersonProvider>
   );
